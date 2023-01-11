@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Departments</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/fontawesome/all.css}">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+
+
+<div class="container mt-4">
+    <h2>Departments</h2>
+
+    <div>
+        <table class="table table-bordered table-striped table-hover table-responsive-xlarge">
+            <thead class="thead-dark">
+            <tr>
+                <th>Department ID</th>
+                <th>Department Name</th>
+                <th>Description</th>
+                <th>Department Code</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="department :${listDepartment}">
+                <td>[[${department.id}]]</td>
+                <td>[[${department.departmentName}]]</td>
+                <td>[[${department.description}]]</td>
+                <td>[[${department.departmentCode}]]</td>
+                <td class="text-center">
+                    <!--                    <a class="fa-solid fa-pen-to-square fa-2x icon-green"-->
+                    <!--                       href=""-->
+                    <!--                       title="Edit this user">-->
+                    <!--                    </a>-->
+                    <button type="button" class="btn btn-success">
+                        <a th:href="@{'/departments/update/' + ${department.id}}"  class="text-reset text-decoration-none">Update</a>
+                    </button>
+                    &nbsp;&nbsp;
+                    <!--                    <a class="fa-solid fa-trash-can fa-2x icon-silver" href=""></a>-->
+                    <button type="button" class="btn btn-danger">
+                        <a th:href="@{'/departments/delete/' + ${department.id}}"  class="text-reset text-decoration-none">Delete</a>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-primary">
+            <a th:href="@{/departments/new}" class="text-reset text-decoration-none">Add New Department</a>
+        </button>
+    </div>
+
+
+</div>
+
+</body>
+</html>
