@@ -10,12 +10,14 @@ import com.seyda.repository.entity.Company;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 
-public class CompanyService  {
+public class CompanyService {
     private final ICompanyRepository companyRepository;
 
 
@@ -28,7 +30,7 @@ public class CompanyService  {
     }
 
 
-    public List<Company> getAllDepartments(){
+    public List<Company> getAllDepartments() {
         return companyRepository.findAll();
     }
 
@@ -43,6 +45,33 @@ public class CompanyService  {
 
     public void deleteCompanyById(Long id) {
 
-       companyRepository.deleteById(id);
+        companyRepository.deleteById(id);
     }
+
+    public Company findbyId(Long id) {
+
+        return companyRepository.findById(id).get();
+
+    }
+
+    public Boolean deleteDepartmentByIdWithResponse(Long id) {
+        companyRepository.deleteById(id);
+        return true;
+    }
+
+
+    public List<CompanyResponseDto> getAllCompanyWithResponse() {
+        List<Company> companyList = companyRepository.findAll();
+        List<CompanyResponseDto> responseDtos = new ArrayList<>();
+
+        for (Company company : companyList) {
+            responseDtos.add(
+                    ICompanyMapper.INSTANCE.companyResponseDtoFromCompany(company)
+            );
+        }
+
+        return responseDtos;
+    }
+
+
 }

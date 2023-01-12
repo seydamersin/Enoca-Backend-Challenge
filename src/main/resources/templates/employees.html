@@ -33,7 +33,7 @@
             <tbody>
             <tr th:each="employee :${listEmployee}">
                 <td>[[${employee.id}]]</td>
-                <td>[[${employee.department.departmentName}]]</td>
+                <td>[[${employee.company.companyName}]]</td>
                 <td>[[${employee.firstName}]]</td>
                 <td>[[${employee.lastName}]]</td>
                 <td>[[${employee.title}]]</td>
@@ -43,16 +43,16 @@
                     <!--                       href=""-->
                     <!--                       title="Edit this user">-->
                     <!--                    </a>-->
-                    <button type="button" class="btn btn-success">Update</button>
+                    <a th:href="@{'/employee/update/' + ${employee.id}}" type="button" class="btn btn-success">Update</a>
                     &nbsp;&nbsp;
                     <!--                    <a class="fa-solid fa-trash-can fa-2x icon-silver" href=""></a>-->
-                    <button type="button" class="btn btn-danger">Delete</button>
+                    <a th:href="@{'/employee/delete/' + ${employee.id}}" type="button" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
             </tbody>
         </table>
         <button type="button" class="btn btn-primary">
-            <a th:href="@{/employees/new}" class="text-reset text-decoration-none">Add New Employee</a>
+            <a th:href="@{/employee/new}" class="text-reset text-decoration-none">Add New Employee</a>
         </button>
     </div>
 

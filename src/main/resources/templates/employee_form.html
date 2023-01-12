@@ -13,7 +13,7 @@
 </head>
 <body>
 <div>
-    <form th:action="@{/employees/save}" method="post" style="max-width: 700px; margin: auto;" th:object="${employee}">
+    <form th:action="@{/employee/save}" method="post" style="max-width: 700px; margin: auto;" th:object="${employee}">
         <input type="hidden" th:field="*{id}"/>
         <div class="border border-secondary rounded p-3">
 
@@ -41,11 +41,12 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Departments:</label>
                 <div class="col-sm-8">
-                    <th:block th:each="department : ${listDepartments}">
-                        <input type="radio" th:field="*{department}" th:text="${department.departmentName}"
-                               th:value="${department.id}"
+                    <th:block th:each="company : ${companyList}">
+                        <input type="radio"th:text="${company.companyName}"
+                               th:value="${company.id}"
+                               th:name="companyId"
                                class="m-2"/>
-                        - <small>[[${department.departmentCode}]]</small>
+                        - <small>[[${company.companyCode}]]</small>
                         <br>
                     </th:block>
                 </div>

@@ -1,38 +1,44 @@
 package com.seyda.controller;
 
 import com.seyda.dto.request.CompanyRequestDto;
+;
 import com.seyda.dto.response.CompanyResponseDto;
-import com.seyda.repository.entity.Company;
+
 import com.seyda.service.CompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/company")
+@RequestMapping("/v1/company")
 public class CompanyRestController {
     private final CompanyService companyService;
 
 
 
-    @PostMapping("/add")
-    public ResponseEntity<CompanyResponseDto> addDepartment(@RequestBody CompanyRequestDto dto){
+    @PostMapping("/save")
+    public ResponseEntity<CompanyResponseDto> saveDepartment(@RequestBody CompanyRequestDto dto) {
         return ResponseEntity.ok(companyService.saveDepartment(dto));
     }
-    @GetMapping("/save")
-    public ResponseEntity<String> save(){
 
-        companyService.save(
-                Company.builder()
-                        .companyName("Enoca")
-                        .companyCode("12778")
-                        .description("SAP consult")
-                        .build()
-        );
-return ResponseEntity.ok("The company is succesfully saved ");
+    @GetMapping("/alldepartments")
+    public ResponseEntity<List<CompanyResponseDto>> getAllDepartments(){
+        return ResponseEntity.ok(companyService.getAllCompanyWithResponse());
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<CompanyResponseDto> updateDepartment
+            (@PathVariable Long id, @RequestBody CompanyRequestDto dto) {
 
+        return ResponseEntity.ok(companyService.saveDepartment(dto));
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<Boolean> deleteDepartment(@RequestBody Long id) {
+        return ResponseEntity.ok(companyService.deleteDepartmentByIdWithResponse(id));
+    }
 
 }

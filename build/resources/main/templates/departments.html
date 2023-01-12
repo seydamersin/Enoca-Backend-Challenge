@@ -29,30 +29,30 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="department :${listDepartment}">
-                <td>[[${department.id}]]</td>
-                <td>[[${department.departmentName}]]</td>
-                <td>[[${department.description}]]</td>
-                <td>[[${department.departmentCode}]]</td>
+            <tr th:each="company :${listDepartment}">
+                <td>[[${company.id}]]</td>
+                <td>[[${company.companyName}]]</td>
+                <td>[[${company.description}]]</td>
+                <td>[[${company.companyCode}]]</td>
                 <td class="text-center">
                     <!--                    <a class="fa-solid fa-pen-to-square fa-2x icon-green"-->
                     <!--                       href=""-->
                     <!--                       title="Edit this user">-->
                     <!--                    </a>-->
                     <button type="button" class="btn btn-success">
-                        <a th:href="@{'/departments/update/' + ${department.id}}"  class="text-reset text-decoration-none">Update</a>
+                        <a th:href="@{'/company/update/' + ${company.id}}"  class="text-reset text-decoration-none">Update</a>
                     </button>
                     &nbsp;&nbsp;
                     <!--                    <a class="fa-solid fa-trash-can fa-2x icon-silver" href=""></a>-->
                     <button type="button" class="btn btn-danger">
-                        <a th:href="@{'/departments/delete/' + ${department.id}}"  class="text-reset text-decoration-none">Delete</a>
+                        <a th:href="@{'/company/delete/' + ${company.id}}"  class="text-reset text-decoration-none">Delete</a>
                     </button>
                 </td>
             </tr>
             </tbody>
         </table>
         <button type="button" class="btn btn-primary">
-            <a th:href="@{/departments/new}" class="text-reset text-decoration-none">Add New Department</a>
+            <a th:href="@{/company/new}" class="text-reset text-decoration-none">Add New Department</a>
         </button>
     </div>
 

@@ -13,7 +13,7 @@
 </head>
 <body>
 <div>
-  <form th:action="@{/departments/save}" method="post" style="max-width: 700px; margin: auto;" th:object="${department}">
+  <form th:action="@{/company/save}" method="post" style="max-width: 700px; margin: auto;" th:object="${company}">
     <input type="hidden" th:field="*{id}"/>
     <div class="border border-secondary rounded p-3">
 
@@ -21,7 +21,7 @@
       <div class="form-group row">
         <label class="col-sm-4 col-form-label">Department Name:</label>
         <div class="col-sm-8">
-          <input type="text" class="form-control" th:field="*{departmentName}" required minlength="2"
+          <input type="text" class="form-control" th:field="*{companyName}" required minlength="2"
                  maxlength="45">
         </div>
       </div>
@@ -35,7 +35,7 @@
       <div class="form-group row">
         <label class="col-sm-4 col-form-label">Department Code:</label>
         <div class="col-sm-8">
-          <input type="text" class="form-control" th:field="*{departmentCode}" required minlength="2"
+          <input type="text" class="form-control" th:field="*{companyCode}" required minlength="2"
                  maxlength="45">
         </div>
       </div>

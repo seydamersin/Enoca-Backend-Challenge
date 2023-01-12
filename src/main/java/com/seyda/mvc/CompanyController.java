@@ -16,41 +16,43 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CompanyController {
     private  final CompanyService companyService;
-
     @GetMapping("/list")
     public String listAll(Model model) {
         List<Company> listCompany = companyService.getAllDepartments();
         model.addAttribute("listDepartment", listCompany);
-        return "departments";
+        return "companys";
     }
 
     @GetMapping("/new")
     public String newCompany(Model model){
-        Company company = new Company();
-        model.addAttribute("department", company);
 
-        return "department_form";
+        Company company = new Company();
+        model.addAttribute("company", company);
+
+        return "company-form";
     }
 
     @PostMapping("/save")
     public String saveCompany(Company company) {
         companyService.save(company);
 
-        return "redirect:/departments/list";
+        return "redirect:/company/list";
     }
 
     @GetMapping("/update/{id}")
     public String updateCompany(@PathVariable(name = "id") Long id, Model model){
         Company company = companyService.getCompanyById(id);
-        model.addAttribute("department", company);
+        model.addAttribute("company", company);
 
-        return "department_form";
+        return "company-form";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteCompany(@PathVariable(name = "id") Long id){
-       companyService.deleteCompanyById(id);
+        companyService.deleteCompanyById(id);
 
-        return "redirect:/departments/list";
+        return "redirect:/company/list";
     }
 }
+
+
